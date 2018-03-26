@@ -9,7 +9,7 @@ Please see my main [otrs-docker][1] repository for full instructions and the doc
 
 If you would like to run this image manually for testing purposes, then this docker run command will start it in the same way as the docker-compose file:
 ```
-docker run -dt --restart unless-stopped --name otrs-fcgi --mount source=otrs-config,target=/data --mount source=otrs-dir,target=/opt/otrs --network testnet otrs-fcgi:latest
+docker run -dt --restart unless-stopped --name otrs-fcgi --mount source=otrs-config,target=/data --mount source=otrs-dir,target=/opt/otrs --network otrs-backend snw35/otrs-fcgi:latest
 ```
 Note that you will still need a database and nginx webserver configured to proxy CGI requests upstream to this container to actually access the OTRS web interface. My docker-compose file in the [otrs-docker][1] repository will automate this for you.
 
@@ -20,7 +20,7 @@ If you would like to build this image yourself, then the process is straightforw
 docker build -t otrs-fcgi:6.0.6 --build-arg VERSION=6.0.6 .
 ```
 
-## More about my images
+## About my images
 
 All of my containers follow my take on containerization best-practice:
 
@@ -31,6 +31,6 @@ All of my containers follow my take on containerization best-practice:
  * __Security focused.__ All processes (that can be) are run by a dedicated application user with minimal permissions. All containers are tested and intended for use with docker user namespace remapping.
  * __True to the application.__ Defaults are not altered in any way, and no additions or subtractions are made to the application's functionality.
 
-If you like these guidelines, then please check out my other images on Dockerhub.
+If you like these guidelines, then please check out my other images here or on Dockerhub.
 
 [1]: https://github.com/snw35/otrs-docker
