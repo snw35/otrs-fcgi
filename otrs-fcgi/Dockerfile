@@ -21,7 +21,7 @@ RUN apk --no-cache --update add \
     perl-template-toolkit \
     perl-xml-libxml \
     perl-xml-libxslt \
-    perl-xml-parser \ 
+    perl-xml-parser \
     perl-yaml-libyaml \
     perl-text-csv_xs \
     mini-sendmail \
@@ -34,7 +34,7 @@ RUN apk --no-cache --update add \
 
 WORKDIR /opt
 
-ARG VERSION=6.0.5
+ARG VERSION=6.0.6
 
 RUN wget http://ftp.otrs.org/pub/otrs/otrs-$VERSION.tar.gz \
     && tar -xzf otrs-$VERSION.tar.gz \
