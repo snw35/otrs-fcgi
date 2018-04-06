@@ -34,16 +34,30 @@ RUN apk --no-cache --update add \
 
 WORKDIR /opt
 
-ARG VERSION=6.0.6
+ENV OTRS_VERSION 6.0.6
+ENV OTRS_DOWNLOAD_SHA256 0c0be293065c12a90a25e83f51a603ed700f1280c2845595fd4f718ddfe13c14
 
-RUN wget http://ftp.otrs.org/pub/otrs/otrs-$VERSION.tar.gz \
-    && tar -xzf otrs-$VERSION.tar.gz \
-    && ln -s /opt/otrs-$VERSION /opt/otrs \
-    && rm -f /opt/otrs-$VERSION.tar.gz \
-    && cp /opt/otrs/Kernel/Config.pm.dist /data/Config.pm \
+RUN wget http://ftp.otrs.org/pub/otrs/otrs-$OTRS_VERSION.tar.bz2 \
+    && echo "$OTRS_DOWNLOAD_SHA256  otrs-$OTRS_VERSION.tar.bz2" | sha256sum -c - \
+    && tar -xjf otrs-$OTRS_VERSION.tar.bz2 \
+    && ln -s /opt/otrs-$OTRS_VERSION /opt/otrs \
+    && rm -f /opt/otrs-$OTRS_VERSION.tar.bz2
+
+ADD custom-agent-skin.xml /data/
+ADD custom-customer-skin.xml /data/
+
+RUN cp /opt/otrs/Kernel/Config.pm.dist /data/Config.pm \
     && ln -s /data/Config.pm /opt/otrs/Kernel/Config.pm \
     && mv /opt/otrs/Custom /data/ \
+    && rm -rf /opt/otrs/var/tmp \
+    && ln -s /tmp /opt/otrs/var/tmp \
     && ln -s /data/Custom /opt/otrs/Custom \
+    && mkdir /data/custom-agent-skin \
+    && ln -s /data/custom-agent-skin /opt/otrs/var/httpd/htdocs/skins/Agent/custom-agent-skin \
+    && ln -s /data/custom-agent-skin.xml /opt/otrs/Kernel/Config/Files/XML/custom-agent-skin.xml \
+    && mkdir /data/custom-customer-skin \
+    && ln -s /data/custom-customer-skin /opt/otrs/var/httpd/htdocs/skins/Customer/custom-curstomer-skin \
+    && ln -s /data/custom-customer-skin.xml /opt/otrs/Kernel/Config/Files/XML/custom-customer-skin.xml \
     && chown -R otrs /opt/otrs/ \
     && chown -R otrs /data
 

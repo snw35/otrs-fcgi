@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_config version="2.0" init="Changes">
+    <!--
+    <Setting Name="AgentLogo" Required="0" Valid="1">
+        <Description Translatable="1">The logo shown in the header of the agent interface. The URL to the image must be a relative URL to the skin image directory.</Description>
+        <Navigation>Frontend::Agent</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="URL">skins/Agent/custom-agent-skin/img/logo.png</Item>
+                <Item Key="StyleTop">13px</Item>
+                <Item Key="StyleRight">75px</Item>
+                <Item Key="StyleHeight">67px</Item>
+                <Item Key="StyleWidth">244px</Item>
+            </Hash>
+        </Value>
+    </Setting>
+    -->
+    <Setting Name="Loader::Agent::Skin###100-custom-agent-skin" Required="0" Valid="1">
+        <Description Translatable="1">Custom skin for the agent web interface.</Description>
+        <Navigation>Frontend::Agent</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="InternalName">custom-agent-skin</Item>
+                <Item Key="VisibleName">Custom Agent Skin</Item>
+                <Item Key="Description">Custom skin for the agent web interface.</Item>
+            </Hash>
+        </Value>
+    </Setting>
+</otrs_config>
