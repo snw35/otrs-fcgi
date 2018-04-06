@@ -37,7 +37,7 @@ WORKDIR /opt
 ENV OTRS_VERSION 6.0.6
 ENV OTRS_DOWNLOAD_SHA256 0c0be293065c12a90a25e83f51a603ed700f1280c2845595fd4f718ddfe13c14
 
-RUN wget http://ftp.otrs.org/pub/otrs/otrs-$OTRS_VERSION.tar.bz2 \
+RUN wget https://ftp.otrs.org/pub/otrs/otrs-$OTRS_VERSION.tar.bz2 \
     && echo "$OTRS_DOWNLOAD_SHA256  otrs-$OTRS_VERSION.tar.bz2" | sha256sum -c - \
     && tar -xjf otrs-$OTRS_VERSION.tar.bz2 \
     && ln -s /opt/otrs-$OTRS_VERSION /opt/otrs \
