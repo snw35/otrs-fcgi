@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+language: bash
+
+before_install:
+    - docker build -t otrs-fcgi:6.0.6 -f /6.0.6/Dockerfile
+    - docker build -t otrs-fcgi:6.0.5 -f /6.0.5/Dockerfile
