@@ -13,7 +13,6 @@ docker run -dt --restart unless-stopped --name otrs-fcgi --mount source=otrs-con
 ```
 Note that you will still need a database and nginx webserver configured to proxy CGI requests upstream to this container to actually access the OTRS web interface. The docker-compose.yml file in the [otrs-docker][1] repository will automate this for you.
 
-
 ## About my images
 
 All of my containers follow these main guidelines:
@@ -29,3 +28,7 @@ All of my containers follow these main guidelines:
 If you like these guidelines, then please check out my other images here or on Dockerhub.
 
 [1]: https://github.com/snw35/otrs-docker
+
+***
+
+ * [Travis CI: ![Build Status](https://travis-ci.org/snw35/otrs-fcgi.svg?branch=master)](https://travis-ci.org/snw35/otrs-fcgi)
